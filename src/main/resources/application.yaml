@@ -1,0 +1,14 @@
+
+spring:
+  application:
+    name: costumer-service
+  dataSource:
+    url: jdbc:postgresql://localhost:5432/customer
+    username: customer_user
+    password: customer_password
+movie:
+  service:
+    url: http://localhost:7777
+server:
+  port: 8080
+
