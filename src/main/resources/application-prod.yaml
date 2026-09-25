@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: costumer-service
+  config:
+    import: aws-secretsmanager:prod/netflux/db/customer-db?prefix=db.
+  dataSource:
+    url: jdbc:postgresql://${db.host}:5432/customer
+    username: ${db.username}
+    password: ${db.password}
+movie:
+  service:
+    url: http://movie-service:8080
+server:
+  port: 8080
+

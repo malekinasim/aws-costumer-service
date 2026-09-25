@@ -20,11 +20,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.web.client.RestClient;
-
 import java.util.List;
 
 @Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = "spring.cloud.aws.secretsmanager.enabled=false"
+)
+
 class CostumerServiceApplicationTests {
 	@MockitoBean(name = "movieRestClient")
 	private RestClient client;
@@ -97,7 +100,7 @@ class CostumerServiceApplicationTests {
 	}
 	@Test
 	public void updategenre(){
-		GenreUpdateRequest request=new GenreUpdateRequest(Genre.DRAM);
+		GenreUpdateRequest request=new GenreUpdateRequest(Genre.DRAMA);
 		var responseEntity= restClient.patch().uri(
 						"/api/customers/1/genre"
 				).contentType(MediaType.APPLICATION_JSON)
