@@ -18,7 +18,6 @@ public class MovieClient {
     public MovieClient(@Qualifier("movieRestClient") RestClient client) {
         this.client = client;
     }
-
     public  List<MovieDto> getAllMovieByGenre(Genre genre) {
         log.info("genre: {}",genre);
         var list=  client.get()
