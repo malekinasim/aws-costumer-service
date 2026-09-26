@@ -74,6 +74,7 @@ class CostumerServiceApplicationTests {
 		Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 		var customer=responseEntity.getBody();
 		Assertions.assertNotNull(customer);
+
 		Assertions.assertEquals(2,customer.recommendedMovies().size());
 	}
 	@Test
