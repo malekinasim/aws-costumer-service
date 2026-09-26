@@ -4,8 +4,14 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      java: latest
+    commands:
+      - curl -fL --retry 3 "https://api.adoptium.net/v3/binary/latest/24/ga/linux/x64/jdk/hotspot/normal/eclipse" -o /tmp/jdk24.tar.gz
+      - mkdir -p /opt/jdk24
+      - tar -xzf /tmp/jdk24.tar.gz -C /opt/jdk24 --strip-components=1
+      - export JAVA_HOME=/opt/jdk24
+      - export PATH="$JAVA_HOME/bin:$PATH"
+      - java -version
+      - mvn -version
   pre_build:
     commands:
       - ACCOUNT_NUMBER=$(echo $CODEBUILD_BUILD_ARN | cut -f5 -d ':')
