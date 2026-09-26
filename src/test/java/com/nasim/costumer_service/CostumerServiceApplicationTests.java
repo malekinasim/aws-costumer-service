@@ -66,7 +66,6 @@ class CostumerServiceApplicationTests {
 						new MovieDto(2,"movie-2",1987,Genre.ACTION)
 				)
 		);
-
 		var responseEntity= restClient.get().uri(
 						"/api/customers/1"
 				).retrieve()
